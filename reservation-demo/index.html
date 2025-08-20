@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>予約システムデモ - Café Serenity</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- デザインデモ注意書き -->
+    <div class="demo-notice">
+        <div class="container">
+            <p><i class="fas fa-info-circle"></i> これは予約システムのデザインデモです。実際の予約はできません。</p>
+        </div>
+    </div>
+
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>Café Serenity</h1>
+                    <p class="subtitle">オンライン予約システム</p>
+                </div>
+                <div class="header-actions">
+                    <a href="#" class="btn-secondary">店舗情報</a>
+                    <a href="#" class="btn-secondary">お問い合わせ</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main>
+        <!-- ヒーローセクション -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <h2>心癒されるひとときを<br>お気軽にご予約ください</h2>
+                    <p>東京・表参道の隠れ家的カフェで、特別な時間をお過ごしください</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 予約フォームセクション -->
+        <section class="reservation-section">
+            <div class="container">
+                <div class="reservation-container">
+                    <div class="reservation-header">
+                        <h3>ご予約フォーム</h3>
+                        <p>ご希望の日時と人数をお選びください</p>
+                    </div>
+
+                    <form class="reservation-form" id="reservationForm">
+                        <!-- ステップインジケーター -->
+                        <div class="step-indicator">
+                            <div class="step active" data-step="1">
+                                <span class="step-number">1</span>
+                                <span class="step-text">基本情報</span>
+                            </div>
+                            <div class="step" data-step="2">
+                                <span class="step-number">2</span>
+                                <span class="step-text">詳細選択</span>
+                            </div>
+                            <div class="step" data-step="3">
+                                <span class="step-number">3</span>
+                                <span class="step-text">確認</span>
+                            </div>
+                        </div>
+
+                        <!-- ステップ1: 基本情報 -->
+                        <div class="form-step active" data-step="1">
+                            <div class="form-group">
+                                <label for="date">ご希望日</label>
+                                <div class="date-picker">
+                                    <input type="date" id="date" name="date" required>
+                                    <div class="calendar-icon">
+                                        <i class="fas fa-calendar"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="time">ご希望時間</label>
+                                <div class="time-slots">
+                                    <div class="time-slot">
+                                        <input type="radio" id="time-11" name="time" value="11:00" required>
+                                        <label for="time-11">11:00</label>
+                                    </div>
+                                    <div class="time-slot">
+                                        <input type="radio" id="time-12" name="time" value="12:00">
+                                        <label for="time-12">12:00</label>
+                                    </div>
+                                    <div class="time-slot">
+                                        <input type="radio" id="time-13" name="time" value="13:00">
+                                        <label for="time-13">13:00</label>
+                                    </div>
+                                    <div class="time-slot">
+                                        <input type="radio" id="time-14" name="time" value="14:00">
+                                        <label for="time-14">14:00</label>
+                                    </div>
+                                    <div class="time-slot">
+                                        <input type="radio" id="time-15" name="time" value="15:00">
+                                        <label for="time-15">15:00</label>
+                                    </div>
+                                    <div class="time-slot">
+                                        <input type="radio" id="time-16" name="time" value="16:00">
+                                        <label for="time-16">16:00</label>
+                                    </div>
+                                    <div class="time-slot">
+                                        <input type="radio" id="time-17" name="time" value="17:00">
+                                        <label for="time-17">17:00</label>
+                                    </div>
+                                    <div class="time-slot">
+                                        <input type="radio" id="time-18" name="time" value="18:00">
+                                        <label for="time-18">18:00</label>
+                                    </div>
+                                    <div class="time-slot">
+                                        <input type="radio" id="time-19" name="time" value="19:00">
+                                        <label for="time-19">19:00</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="guests">ご来店人数</label>
+                                <div class="guest-selector">
+                                    <button type="button" class="guest-btn" data-action="decrease">-</button>
+                                    <input type="number" id="guests" name="guests" value="2" min="1" max="10" readonly>
+                                    <button type="button" class="guest-btn" data-action="increase">+</button>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-primary next-step">次へ進む</button>
+                            </div>
+                        </div>
+
+                        <!-- ステップ2: 詳細選択 -->
+                        <div class="form-step" data-step="2">
+                            <div class="form-group">
+                                <label for="course">コース選択</label>
+                                <div class="course-options">
+                                    <div class="course-option">
+                                        <input type="radio" id="course-lunch" name="course" value="lunch" required>
+                                        <label for="course-lunch">
+                                            <div class="course-content">
+                                                <h4>ランチコース</h4>
+                                                <p>11:00〜15:00</p>
+                                                <span class="price">¥1,500〜</span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <div class="course-option">
+                                        <input type="radio" id="course-dinner" name="course" value="dinner">
+                                        <label for="course-dinner">
+                                            <div class="course-content">
+                                                <h4>ディナーコース</h4>
+                                                <p>17:00〜20:00</p>
+                                                <span class="price">¥2,500〜</span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <div class="course-option">
+                                        <input type="radio" id="course-cafe" name="course" value="cafe">
+                                        <label for="course-cafe">
+                                            <div class="course-content">
+                                                <h4>カフェタイム</h4>
+                                                <p>14:00〜18:00</p>
+                                                <span class="price">¥800〜</span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="special-requests">ご要望・ご質問</label>
+                                <textarea id="special-requests" name="special-requests" rows="4" placeholder="アレルギー対応、お祝い事、その他ご要望がございましたらお書きください"></textarea>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-secondary prev-step">前へ戻る</button>
+                                <button type="button" class="btn btn-primary next-step">次へ進む</button>
+                            </div>
+                        </div>
+
+                        <!-- ステップ3: 確認 -->
+                        <div class="form-step" data-step="3">
+                            <div class="confirmation-summary">
+                                <h4>ご予約内容の確認</h4>
+                                <div class="summary-item">
+                                    <span class="label">ご希望日:</span>
+                                    <span class="value" id="confirm-date"></span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="label">ご希望時間:</span>
+                                    <span class="value" id="confirm-time"></span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="label">ご来店人数:</span>
+                                    <span class="value" id="confirm-guests"></span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="label">コース:</span>
+                                    <span class="value" id="confirm-course"></span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="label">ご要望:</span>
+                                    <span class="value" id="confirm-requests"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-secondary prev-step">前へ戻る</button>
+                                <button type="submit" class="btn btn-primary">予約を確定する</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- 特徴セクション -->
+        <section class="features-section">
+            <div class="container">
+                <h3>ご予約の特徴</h3>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h4>簡単予約</h4>
+                        <p>3ステップで簡単にご予約いただけます</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h4>スマホ対応</h4>
+                        <p>スマートフォンからも快適にご利用いただけます</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4>安全・安心</h4>
+                        <p>個人情報は適切に管理いたします</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 完了画面（非表示） -->
+        <div class="completion-screen" id="completionScreen">
+            <div class="completion-content">
+                <div class="completion-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3>ご予約ありがとうございます！</h3>
+                <p>ご予約が完了いたしました。<br>ご来店をお待ちしております。</p>
+                <div class="reservation-details">
+                    <h4>予約番号: <span id="reservationNumber"></span></h4>
+                </div>
+                <button type="button" class="btn btn-primary" id="newReservation">新しい予約をする</button>
+            </div>
+        </div>
+
+        <!-- デモ注意メッセージモーダル（非表示） -->
+        <div class="demo-modal" id="demoModal">
+            <div class="demo-modal-content">
+                <div class="demo-modal-header">
+                    <div class="demo-modal-icon">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <h3>デザインデモサイト</h3>
+                </div>
+                <div class="demo-modal-body">
+                    <p>これはデザインデモサイトです。<br>実際の機能は実装されていません。</p>
+                    <p class="demo-note">お客様のご要望に応じて、実際の機能も実装可能です。</p>
+                </div>
+                <div class="demo-modal-footer">
+                    <button type="button" class="btn btn-primary" id="closeDemoModal">了解しました</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>Café Serenity</h3>
+                    <p>心の安らぎを提供するカフェ</p>
+                </div>
+                <div class="footer-info">
+                    <p>〒150-0001 東京都渋谷区神宮前1-1-1</p>
+                    <p>TEL: 03-1234-5678</p>
+                    <p>営業時間: 11:00〜20:00（火曜定休）</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Café Serenity. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

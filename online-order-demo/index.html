@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>オンライン注文・デリバリーシステム - デモサイト</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- デザインデモ注意書き -->
+    <div class="demo-notice">
+        <div class="container">
+            <p><i class="fas fa-info-circle"></i> これはオンライン注文システムのデザインデモです。実際の注文はできません。</p>
+        </div>
+    </div>
+
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="nav-left">
+                    <div class="logo">
+                        <h1>🍕 ピザパラダイス</h1>
+                    </div>
+                </div>
+                <div class="nav-center">
+                    <a href="#" class="nav-link">ホーム</a>
+                    <a href="#" class="nav-link">メニュー</a>
+                    <a href="#" class="nav-link">店舗情報</a>
+                    <a href="#" class="nav-link">お問い合わせ</a>
+                </div>
+                <div class="nav-right">
+                    <div class="cart-icon" id="cartIcon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </div>
+                    <button class="btn btn-outline" id="loginBtn">ログイン</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main>
+        <!-- ヒーローセクション -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h2>30分以内でお届け！<br>本格ピザをお家で</h2>
+                <p>厳選された食材で作る本格ピザを、お気軽にお楽しみください</p>
+                <button class="btn btn-primary btn-large" id="orderNowBtn">
+                    <i class="fas fa-utensils"></i> 今すぐ注文
+                </button>
+            </div>
+            <div class="hero-image">
+                <img src="assets/images/hero-pizza.png" alt="美味しいピザ" class="hero-img">
+            </div>
+        </section>
+
+        <!-- メニューセクション -->
+        <section class="menu-section" id="menuSection">
+            <div class="container">
+                <div class="section-header">
+                    <h3>メニュー</h3>
+                    <p>お好みのピザをお選びください</p>
+                </div>
+                
+                <!-- カテゴリフィルター -->
+                <div class="category-filter">
+                    <button class="category-btn active" data-category="all">すべて</button>
+                    <button class="category-btn" data-category="pizza">ピザ</button>
+                    <button class="category-btn" data-category="pasta">パスタ</button>
+                    <button class="category-btn" data-category="salad">サラダ</button>
+                    <button class="category-btn" data-category="drink">ドリンク</button>
+                </div>
+
+                <!-- メニューグリッド -->
+                <div class="menu-grid" id="menuGrid">
+                    <!-- ピザ -->
+                    <div class="menu-item" data-category="pizza">
+                        <div class="menu-item-image">
+                            <img src="assets/images/menu-margherita.png" alt="マルゲリータピザ">
+                        </div>
+                        <div class="menu-item-content">
+                            <h4>マルゲリータピザ</h4>
+                            <p>トマトソース、モッツァレラチーズ、バジルの定番ピザ</p>
+                            <div class="menu-item-footer">
+                                <span class="price">¥1,280</span>
+                                <button class="btn btn-primary btn-small add-to-cart" data-id="1" data-name="マルゲリータピザ" data-price="1280">
+                                    <i class="fas fa-plus"></i> 追加
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-item" data-category="pizza">
+                        <div class="menu-item-image">
+                            <img src="assets/images/menu-pepperoni.png" alt="ペパロニピザ">
+                        </div>
+                        <div class="menu-item-content">
+                            <h4>ペパロニピザ</h4>
+                            <p>スパイシーなペパロニとチーズの組み合わせ</p>
+                            <div class="menu-item-footer">
+                                <span class="price">¥1,480</span>
+                                <button class="btn btn-primary btn-small add-to-cart" data-id="2" data-name="ペパロニピザ" data-price="1480">
+                                    <i class="fas fa-plus"></i> 追加
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-item" data-category="pizza">
+                        <div class="menu-item-image">
+                            <img src="assets/images/menu-quattro.png" alt="クアトロフォルマッジ">
+                        </div>
+                        <div class="menu-item-content">
+                            <h4>クアトロフォルマッジ</h4>
+                            <p>4種類のチーズを贅沢に使用した濃厚ピザ</p>
+                            <div class="menu-item-footer">
+                                <span class="price">¥1,680</span>
+                                <button class="btn btn-primary btn-small add-to-cart" data-id="3" data-name="クアトロフォルマッジ" data-price="1680">
+                                    <i class="fas fa-plus"></i> 追加
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- パスタ -->
+                    <div class="menu-item" data-category="pasta">
+                        <div class="menu-item-image">
+                            <img src="assets/images/menu-carbonara.png" alt="カルボナーラ">
+                        </div>
+                        <div class="menu-item-content">
+                            <h4>カルボナーラ</h4>
+                            <p>卵とチーズの濃厚ソースで作る本格パスタ</p>
+                            <div class="menu-item-footer">
+                                <span class="price">¥980</span>
+                                <button class="btn btn-primary btn-small add-to-cart" data-id="4" data-name="カルボナーラ" data-price="980">
+                                    <i class="fas fa-plus"></i> 追加
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-item" data-category="pasta">
+                        <div class="menu-item-image">
+                            <img src="assets/images/menu-arrabbiata.png" alt="アラビアータ">
+                        </div>
+                        <div class="menu-item-content">
+                            <h4>アラビアータ</h4>
+                            <p>唐辛子の効いたスパイシートマトソース</p>
+                            <div class="menu-item-footer">
+                                <span class="price">¥880</span>
+                                <button class="btn btn-primary btn-small add-to-cart" data-id="5" data-name="アラビアータ" data-price="880">
+                                    <i class="fas fa-plus"></i> 追加
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- サラダ -->
+                    <div class="menu-item" data-category="salad">
+                        <div class="menu-item-image">
+                            <img src="assets/images/menu-caesar.png" alt="シーザーサラダ">
+                        </div>
+                        <div class="menu-item-content">
+                            <h4>シーザーサラダ</h4>
+                            <p>レタス、パルメザンチーズ、クルトンの定番サラダ</p>
+                            <div class="menu-item-footer">
+                                <span class="price">¥580</span>
+                                <button class="btn btn-primary btn-small add-to-cart" data-id="6" data-name="シーザーサラダ" data-price="580">
+                                    <i class="fas fa-plus"></i> 追加
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ドリンク -->
+                    <div class="menu-item" data-category="drink">
+                        <div class="menu-item-image">
+                            <img src="assets/images/menu-cola.png" alt="コーラ">
+                        </div>
+                        <div class="menu-item-content">
+                            <h4>コーラ</h4>
+                            <p>ピザに合う定番ドリンク</p>
+                            <div class="menu-item-footer">
+                                <span class="price">¥280</span>
+                                <button class="btn btn-primary btn-small add-to-cart" data-id="7" data-name="コーラ" data-price="280">
+                                    <i class="fas fa-plus"></i> 追加
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-item" data-category="drink">
+                        <div class="menu-item-image">
+                            <img src="assets/images/menu-beer.png" alt="ビール">
+                        </div>
+                        <div class="menu-item-content">
+                            <h4>ビール</h4>
+                            <p>ピザと一緒に楽しむ生ビール</p>
+                            <div class="menu-item-footer">
+                                <span class="price">¥480</span>
+                                <button class="btn btn-primary btn-small add-to-cart" data-id="8" data-name="ビール" data-price="480">
+                                    <i class="fas fa-plus"></i> 追加
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- カートセクション -->
+        <section class="cart-section" id="cartSection">
+            <div class="container">
+                <div class="cart-container">
+                    <div class="cart-header">
+                        <h3><i class="fas fa-shopping-cart"></i> カート</h3>
+                        <button class="btn btn-outline btn-small" id="clearCartBtn">カートを空にする</button>
+                    </div>
+                    
+                    <div class="cart-items" id="cartItems">
+                        <div class="cart-empty">
+                            <i class="fas fa-shopping-basket"></i>
+                            <p>カートに商品がありません</p>
+                            <p>メニューから商品を選んでください</p>
+                        </div>
+                    </div>
+                    
+                    <div class="cart-footer" id="cartFooter" style="display: none;">
+                        <div class="cart-total">
+                            <div class="total-line">
+                                <span>小計:</span>
+                                <span id="subtotal">¥0</span>
+                            </div>
+                            <div class="total-line">
+                                <span>配達料:</span>
+                                <span id="deliveryFee">¥300</span>
+                            </div>
+                            <div class="total-line total-final">
+                                <span>合計:</span>
+                                <span id="totalAmount">¥300</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-large" id="checkoutBtn">
+                            <i class="fas fa-credit-card"></i> 注文に進む
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 注文フォームセクション -->
+        <section class="checkout-section" id="checkoutSection" style="display: none;">
+            <div class="container">
+                <div class="checkout-container">
+                    <div class="checkout-header">
+                        <h3><i class="fas fa-credit-card"></i> 注文情報</h3>
+                        <p>お客様情報と配達先を入力してください</p>
+                    </div>
+                    
+                    <form class="checkout-form" id="checkoutForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="customerName">お名前 *</label>
+                                <input type="text" id="customerName" name="customerName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="customerPhone">電話番号 *</label>
+                                <input type="tel" id="customerPhone" name="customerPhone" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="customerEmail">メールアドレス</label>
+                            <input type="email" id="customerEmail" name="customerEmail">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="deliveryAddress">配達先住所 *</label>
+                            <textarea id="deliveryAddress" name="deliveryAddress" rows="3" required></textarea>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="deliveryTime">配達希望時間 *</label>
+                                <select id="deliveryTime" name="deliveryTime" required>
+                                    <option value="">選択してください</option>
+                                    <option value="30">30分以内</option>
+                                    <option value="45">45分以内</option>
+                                    <option value="60">1時間以内</option>
+                                    <option value="90">1時間30分以内</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="paymentMethod">支払い方法 *</label>
+                                <select id="paymentMethod" name="paymentMethod" required>
+                                    <option value="">選択してください</option>
+                                    <option value="cash">現金</option>
+                                    <option value="card">クレジットカード</option>
+                                    <option value="paypay">PayPay</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="specialRequests">ご要望・ご注意事項</label>
+                            <textarea id="specialRequests" name="specialRequests" rows="2" placeholder="アレルギーや配達時のご要望があればご記入ください"></textarea>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-outline" id="backToCartBtn">
+                                <i class="fas fa-arrow-left"></i> カートに戻る
+                            </button>
+                            <button type="submit" class="btn btn-primary btn-large">
+                                <i class="fas fa-check"></i> 注文を確定する
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- 注文完了セクション -->
+        <section class="completion-section" id="completionSection" style="display: none;">
+            <div class="container">
+                <div class="completion-container">
+                    <div class="completion-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>注文が完了しました！</h3>
+                    <p>ご注文ありがとうございます。配達の準備を開始いたします。</p>
+                    
+                    <div class="order-summary">
+                        <h4>注文内容</h4>
+                        <div class="summary-details" id="orderSummary">
+                            <!-- JavaScriptで動的に生成 -->
+                        </div>
+                    </div>
+                    
+                    <div class="delivery-info">
+                        <h4>配達情報</h4>
+                        <p><strong>配達予定時間:</strong> <span id="estimatedDelivery">約30分</span></p>
+                        <p><strong>配達先:</strong> <span id="deliveryAddressDisplay">-</span></p>
+                    </div>
+                    
+                    <div class="completion-actions">
+                        <button class="btn btn-primary" id="newOrderBtn">
+                            <i class="fas fa-plus"></i> 新しい注文
+                        </button>
+                        <button class="btn btn-outline" id="viewMenuBtn">
+                            <i class="fas fa-utensils"></i> メニューを見る
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 特徴セクション -->
+        <section class="features-section">
+            <div class="container">
+                <div class="section-header">
+                    <h3>ピザパラダイスの特徴</h3>
+                    <p>お客様に最高のサービスを提供します</p>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h4>30分以内配達</h4>
+                        <p>注文から30分以内でお届けします</p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h4>厳選食材</h4>
+                        <p>新鮮で安全な食材のみを使用しています</p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <h4>石窯焼き</h4>
+                        <p>伝統的な石窯で焼き上げる本格ピザ</p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h4>簡単注文</h4>
+                        <p>スマートフォンから簡単に注文できます</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>🍕 ピザパラダイス</h3>
+                    <p>本格ピザをお家でお楽しみください</p>
+                </div>
+                <div class="footer-info">
+                    <p><i class="fas fa-phone"></i> 03-1234-5678</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 東京都渋谷区○○○</p>
+                    <p><i class="fas fa-clock"></i> 11:00-23:00（年中無休）</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ピザパラダイス. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- デモ注意メッセージモーダル -->
+    <div class="demo-modal" id="demoModal">
+        <div class="demo-modal-content">
+            <div class="demo-modal-header">
+                <div class="demo-modal-icon">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <h3>デザインデモサイト</h3>
+            </div>
+            <div class="demo-modal-body">
+                <p>これはオンライン注文システムのデザインデモサイトです。<br>実際の注文はできません。</p>
+                <p class="demo-note">お客様のご要望に応じて、実際の機能も実装可能です。</p>
+            </div>
+            <div class="demo-modal-footer">
+                <button type="button" class="btn btn-primary" id="closeDemoModal">了解しました</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "cafe-web-sites",
+  "version": "1.0.0",
+  "description": "飲食店向けWebサイト制作デモ集",
+  "private": true,
+  "scripts": {
+    "dev": "echo '静的サイトです。ブラウザで直接開いてください。'",
+    "build": "echo '静的サイトです。ビルドは不要です。'",
+    "preview": "echo '静的サイトです。ブラウザで直接開いてください。'"
+  },
+  "keywords": [
+    "cafe",
+    "restaurant",
+    "pizza",
+    "web-design",
+    "demo"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}
